@@ -7,7 +7,7 @@ const handleCategory = async () => {
     data.data.forEach(category => {
         const div = document.createElement("div");
         div.innerHTML = `
-        <a onclick="loadVideo('${category.category_id}')" class="tab text-xl "> ${category.category} </a> 
+        <a onclick="loadVideo('${category.category_id}')" class="tabs tabs-boxed m-3 p-3 text-xl font-normal"> ${category.category} </a> 
         `;
         tabContainer.appendChild(div);
     });
@@ -24,7 +24,7 @@ const loadVideo = async (categoryid) => {
     cardContainer.innerHTML = "";
 
     data.data.forEach(video => {
-        console.log(video.authors[0]);
+      //  console.log(video.authors[0]);
         const div = document.createElement("div");
         div.innerHTML = `
         <div class="card w-96 bg-base-100 m-5">
