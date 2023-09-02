@@ -5,10 +5,9 @@ const handleCategory = async () => {
     const tabContainer = document.getElementById("tabContainer");
 
     data.data.forEach(category => {
-        console.log(category);
         const div = document.createElement("div");
         div.innerHTML = `
-        <a onclick="loadVideo('${category.category_id}')" class="tab"> ${category.category} </a> 
+        <a onclick="loadVideo('${category.category_id}')" class="tab text-xl "> ${category.category} </a> 
         `;
         tabContainer.appendChild(div);
     });
@@ -29,22 +28,23 @@ const loadVideo = async (categoryid) => {
         const div = document.createElement("div");
         div.innerHTML = `
         <div class="card w-96 bg-base-100 m-5">
-        <figure class="px-10 pt-10">
-          <img src="${video.thumbnail}" alt="Shoes" class="rounded-xl" />
-        </figure>
-        <div class="card-body  text-center">
-            <div class="flex gap-5 justify-between ">
-                <img src="${video.authors[0].profile_picture}" alt="" class="rounded-full h-10 w-10" />
-                <h2 class="card-title "> ${video.title}</h2>
-            </div>
-          
-        </div>
-        <div class="text-left ml-10">
-            <p> ${video.authors[0].profile_name} </p>
-            <p> ${video.authors[0]?.verified} </p>
+            <figure class="px-5 pt-5">
+            <img src="${video.thumbnail}" alt="Shoes" class="rounded-xl w-[320px] h-[200px]" />
+            </figure>
+            <div class="card-body  text-center">
+                <div class="flex gap-5 justify-left ">
+                    <img src="${video.authors[0].profile_picture}" alt="" class="rounded-full h-10 w-10" />
+                    <h2 class="card-title font-bold "> ${video.title}</h2>
+                </div>
             
-            <p > ${video.others.views} </p>
-        </div>   
+            </div>
+            <div class="text-left ml-24 -mt-8">
+                <div class="flex gap-2 justify-left items-center">
+                    <p> ${video.authors[0].profile_name} </p>
+                    <p class="h-7 w-7"> ${video.authors[0]?.verified? `<img src="./verified.png">` : ' '}  </p>
+                </div>
+                <p > ${video.others.views} Views </p>
+            </div>   
       </div>
         `;
         cardContainer.appendChild(div);
