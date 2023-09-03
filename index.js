@@ -6,6 +6,7 @@ const handleCategory = async () => {
 
     const tabContainer = document.getElementById("tabContainer");
     data.data.forEach(category => {
+        
         const div = document.createElement("div");
         div.innerHTML = `
         <a onclick="loadVideo('${category.category_id}')" class="tabs tabs-boxed m-3 p-3 text-xl font-normal"> ${category.category} </a> 
@@ -14,13 +15,13 @@ const handleCategory = async () => {
 
     });
 
-
 };
 
 const sortByView = async (categoryid) => {
     const response = await fetch(`https://openapi.programming-hero.com/api/videos/category/${categoryid}`);
     const data = await response.json();
     const videos = data.data;
+    
 
     videos.sort((a, b) => {
         const first = parseInt(a.others.views.replace("k", ""));
@@ -59,17 +60,28 @@ const sortByView = async (categoryid) => {
     });
 };
 
-
 const loadVideo = async (categoryid) => {
     currentCategoryId = categoryid;
+
     const response = await fetch(`https://openapi.programming-hero.com/api/videos/category/${categoryid}`);
     const data = await response.json();
+    const videos = data.data;
 
     const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = "";
-
-    data.data.forEach(video => {
-        //  console.log(video.authors[0]);
+    
+    if (data.status == false){
+        const div = document.createElement("div");
+        div.innerHTML = `
+        <img class="mx-auto"  src="./Icon.png" alt="eroor">  
+        <br>
+        <h1 class="font-bold text-6xl"> OoPs ! There is no content </h1>
+        `;
+        div.classList.add("col-span-1", "md:col-span-3", "lg:col-span-4", "place-self-center")
+        cardContainer.appendChild(div);
+    }
+    videos.forEach(video => {
+         
         const div = document.createElement("div");
         div.innerHTML = `
         <div class="card w-96 bg-base-100 m-5">
@@ -97,7 +109,6 @@ const loadVideo = async (categoryid) => {
     })
 
 
-
     // console.log(data.data);
 };
 
@@ -106,10 +117,8 @@ const sortButton = document.getElementById("sort-btn");
     sortButton.addEventListener("click", () => {
     
     sortByView(currentCategoryId);
-    console.log(currentCategoryId);
+    // console.log(currentCategoryId);
 });
-
-
 
 handleCategory();
 loadVideo(currentCategoryId);
