@@ -39,7 +39,7 @@ const sortByView = async (categoryid) => {
         <br>
         <h1 class="font-bold text-6xl"> OoPs ! There is no content </h1>
         `;
-        div.classList.add("col-span-1", "md:col-span-3", "lg:col-span-4", "place-self-center")
+        div.classList.add("col-span-1", "md:col-span-2", "lg:col-span-4", "place-self-center")
         cardContainer.appendChild(div);
     }
 
@@ -88,7 +88,7 @@ const loadVideo = async (categoryid) => {
         <br>
         <h1 class="font-bold text-6xl"> OoPs ! There is no content </h1>
         `;
-        div.classList.add("col-span-1", "md:col-span-3", "lg:col-span-4", "place-self-center")
+        div.classList.add("col-span-1", "md:col-span-2", "lg:col-span-4", "place-self-center")
         cardContainer.appendChild(div);
     }
     videos.forEach(video => {
