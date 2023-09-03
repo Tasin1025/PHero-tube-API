@@ -32,6 +32,17 @@ const sortByView = async (categoryid) => {
     const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = "";
 
+    if (data.status == false){
+        const div = document.createElement("div");
+        div.innerHTML = `
+        <img class="mx-auto"  src="./Icon.png" alt="eroor">  
+        <br>
+        <h1 class="font-bold text-6xl"> OoPs ! There is no content </h1>
+        `;
+        div.classList.add("col-span-1", "md:col-span-3", "lg:col-span-4", "place-self-center")
+        cardContainer.appendChild(div);
+    }
+
     videos.forEach((video) => {
         const div = document.createElement("div");
         div.innerHTML = `
@@ -111,7 +122,6 @@ const loadVideo = async (categoryid) => {
 
     // console.log(data.data);
 };
-
 
 const sortButton = document.getElementById("sort-btn");
     sortButton.addEventListener("click", () => {
